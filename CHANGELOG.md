@@ -64,5 +64,5 @@
 - 6 neue Unit-Tests für `SubcategoriesResolver` (Edge-Cases: keine Config, leerer String, falscher Typ, gültige ID, getType, collect-no-op)
 
 ### Bewusste Schulden (geplant für Phase 3.4)
-- composer.json `name`: weiterhin `rc/subcategories-cms-block` statt `ruhrcoder/rc-subcategories-cms-block` — Aenderung erfordert DB-Migration auf `composer_name` der `plugin`-Tabelle und wird sauber im Rahmen der RcCmsBlocks-Konsolidierung erledigt
+- composer.json `name`: weiterhin `rc/subcategories-cms-block` statt `ruhrcoder/rc-subcategories-cms-block` — Änderung erfordert DB-Migration auf `composer_name` der `plugin`-Tabelle und wird sauber im Rahmen der RcCmsBlocks-Konsolidierung erledigt
 - Inline-`<style>`-Block in `cms-element-subcategories.html.twig` (Zeile 105-238) — Auslagerung in SCSS erfordert komplettes Storefront-Build-Setup und wird im Rahmen der RcCmsBlocks-Konsolidierung sauber gesammelt
