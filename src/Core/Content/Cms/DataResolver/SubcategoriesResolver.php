@@ -41,9 +41,9 @@ final class SubcategoriesResolver extends AbstractCmsElementResolver
 
     public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
     {
-        // Die parentCategory-ID liesse sich hier zwar ueber $slot->getFieldConfig() lesen, doch das
-        // Element laedt genau eine To-Many-Abfrage. Eine CriteriaCollection in collect() lohnt sich
-        // erst beim Batchen mehrerer Slots; fuer einen einzelnen Slot bleibt die Abfrage in enrich().
+        // Die parentCategory-ID liesse sich hier zwar über $slot->getFieldConfig() lesen, doch das
+        // Element lädt genau eine To-Many-Abfrage. Eine CriteriaCollection in collect() lohnt sich
+        // erst beim Batchen mehrerer Slots; für einen einzelnen Slot bleibt die Abfrage in enrich().
         return null;
     }
 
@@ -75,7 +75,7 @@ final class SubcategoriesResolver extends AbstractCmsElementResolver
         $criteria->addFilter(new EqualsFilter('active', true));
         $criteria->addFilter(new EqualsFilter('visible', true));
         // Weder Link- noch Folder-Kategorien: beide haben keine eigene Navigationsseite und
-        // wuerden sonst als 404-Kachel verlinkt.
+        // würden sonst als 404-Kachel verlinkt.
         $criteria->addFilter(new NotFilter(NotFilter::CONNECTION_AND, [
             new EqualsFilter('type', CategoryDefinition::TYPE_LINK),
         ]));

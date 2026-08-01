@@ -1,9 +1,9 @@
 /*
- * Storefront-Styles fuer das Subcategories-CMS-Element. Bewusst hier statt als
+ * Storefront-Styles für das Subcategories-CMS-Element. Bewusst hier statt als
  * Inline-<style> im Twig: Inline-Styles blocken den HTTP-Cache und werden bei
- * jedem Seitenaufruf erneut ausgeliefert. Die einzige dynamische Groesse
+ * jedem Seitenaufruf erneut ausgeliefert. Die einzige dynamische Größe
  * (Spaltenzahl) kommt weiterhin als CSS-Custom-Property `--columns` per
- * Inline-Attribut am Grid-Container (legitim fuer Pro-Element-Werte).
+ * Inline-Attribut am Grid-Container (legitim für Pro-Element-Werte).
  */
 
 .cms-element-subcategories {

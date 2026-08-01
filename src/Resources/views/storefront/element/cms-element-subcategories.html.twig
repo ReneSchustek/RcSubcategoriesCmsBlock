@@ -7,8 +7,8 @@
             {% set displayMode = config.displayMode.value|default('grid') %}
             {% set columnsPerRow = config.columnsPerRow.value|default(4) %}
             {# `?? true` statt `|default(true)`: der default-Filter greift bei JEDEM leeren Wert — auch bei
-               `false` -> ein ausgeschalteter Schalter wuerde faelschlich wieder auf true fallen. Null-Coalescing
-               faellt nur bei null/undefined zurueck und erhaelt ein bewusstes `false`. #}
+               `false` -> ein ausgeschalteter Schalter würde fälschlich wieder auf true fallen. Null-Coalescing
+               fällt nur bei null/undefined zurück und erhält ein bewusstes `false`. #}
             {% set showCategoryImage = config.showCategoryImage.value ?? true %}
             {% set showCategoryName = config.showCategoryName.value ?? true %}
 
@@ -50,7 +50,7 @@
                                         {% if not showCategoryImage and not showCategoryName %}
                                             {% block subcategories_grid_item_sr_name %}
                                                 {# Bild UND Name aus: der Link braucht trotzdem einen
-                                                   zugaenglichen Namen (WCAG 2.4.4 / BFSG). #}
+                                                   zugänglichen Namen (WCAG 2.4.4 / BFSG). #}
                                                 <span class="visually-hidden">{{ category.name }}</span>
                                             {% endblock %}
                                         {% endif %}
@@ -97,7 +97,7 @@
                                         {% if not showCategoryImage and not showCategoryName %}
                                             {% block subcategories_list_item_sr_name %}
                                                 {# Bild UND Name aus: der Link braucht trotzdem einen
-                                                   zugaenglichen Namen (WCAG 2.4.4 / BFSG). #}
+                                                   zugänglichen Namen (WCAG 2.4.4 / BFSG). #}
                                                 <span class="visually-hidden">{{ category.name }}</span>
                                             {% endblock %}
                                         {% endif %}
@@ -119,4 +119,4 @@
 {% endblock %}
 
 {# Styles liegen in src/Resources/app/storefront/src/scss/base.scss (Theme-Build),
-   bewusst nicht als Inline-CSS im Template (das wuerde den HTTP-Cache blocken). #}
+   bewusst nicht als Inline-CSS im Template (das würde den HTTP-Cache blocken). #}
