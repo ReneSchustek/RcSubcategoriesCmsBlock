@@ -1,0 +1,38 @@
+{
+  "sw-cms": {
+    "elements": {
+      "subcategories": {
+        "label": "Unterkategorien",
+        "config": {
+          "title": "Unterkategorien Einstellungen",
+          "parentCategory": {
+            "label": "Hauptkategorie",
+            "helpText": "Wählen Sie die Kategorie aus, deren Unterkategorien angezeigt werden sollen",
+            "placeholder": "Kategorie auswählen..."
+          },
+          "displayMode": {
+            "label": "Anzeigemodus",
+            "grid": "Raster",
+            "list": "Liste"
+          },
+          "columnsPerRow": {
+            "label": "Spalten pro Reihe"
+          },
+          "displayOptions": "Anzeigeoptionen",
+          "showCategoryImage": {
+            "label": "Kategorie-Bild anzeigen"
+          },
+          "showCategoryName": {
+            "label": "Kategorie-Name anzeigen"
+          },
+          "noParentCategory": "Bitte wählen Sie eine Hauptkategorie aus."
+        },
+        "preview": {
+          "label": "Unterkategorien",
+          "categoryName": "Kategorie {number}",
+          "noSubcategories": "Keine Unterkategorien gefunden"
+        }
+      }
+    }
+  }
+}

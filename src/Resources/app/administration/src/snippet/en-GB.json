@@ -1,0 +1,38 @@
+{
+  "sw-cms": {
+    "elements": {
+      "subcategories": {
+        "label": "Subcategories",
+        "config": {
+          "title": "Subcategories Settings",
+          "parentCategory": {
+            "label": "Parent Category",
+            "helpText": "Select the category whose subcategories should be displayed",
+            "placeholder": "Select category..."
+          },
+          "displayMode": {
+            "label": "Display Mode",
+            "grid": "Grid",
+            "list": "List"
+          },
+          "columnsPerRow": {
+            "label": "Columns per Row"
+          },
+          "displayOptions": "Display Options",
+          "showCategoryImage": {
+            "label": "Show Category Image"
+          },
+          "showCategoryName": {
+            "label": "Show Category Name"
+          },
+          "noParentCategory": "Please select a parent category."
+        },
+        "preview": {
+          "label": "Subcategories",
+          "categoryName": "Category {number}",
+          "noSubcategories": "No subcategories found"
+        }
+      }
+    }
+  }
+}

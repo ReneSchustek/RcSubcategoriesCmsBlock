@@ -1,0 +1,69 @@
+<div class="sw-cms-el-subcategories">
+    <div class="sw-cms-el-subcategories__config-overlay"
+         v-if="!parentCategoryId && !isSystemDefaultLanguage">
+        <p>{{ $tc('sw-cms.elements.subcategories.config.noParentCategory') }}</p>
+    </div>
+
+    <div class="sw-cms-el-subcategories__loading" v-if="isLoading">
+        <sw-loader></sw-loader>
+    </div>
+
+    <div class="sw-cms-el-subcategories__content"
+         v-else-if="subcategories.length > 0"
+         :class="`sw-cms-el-subcategories__content--${displayMode}`">
+
+        <div class="sw-cms-el-subcategories__grid"
+             v-if="displayMode === 'grid'"
+             :style="{ gridTemplateColumns: gridColumns }">
+
+            <div class="sw-cms-el-subcategories__item"
+                 v-for="category in subcategories"
+                 :key="category.id">
+
+                <div class="sw-cms-el-subcategories__image" v-if="showCategoryImage">
+                    <img v-if="getCategoryImageUrl(category)"
+                         :src="getCategoryImageUrl(category)"
+                         :alt="category.name"
+                         class="sw-cms-el-subcategories__image-element">
+
+                    <div v-else class="sw-cms-el-subcategories__image-placeholder">
+                        <sw-icon name="regular-image" size="32"></sw-icon>
+                    </div>
+                </div>
+
+                <div class="sw-cms-el-subcategories__name" v-if="showCategoryName">
+                    {{ category.name }}
+                </div>
+            </div>
+        </div>
+
+        <div class="sw-cms-el-subcategories__list" v-else-if="displayMode === 'list'">
+            <div class="sw-cms-el-subcategories__list-item"
+                 v-for="category in subcategories"
+                 :key="category.id">
+
+                <div class="sw-cms-el-subcategories__list-image" v-if="showCategoryImage">
+                    <img v-if="getCategoryImageUrl(category)"
+                         :src="getCategoryImageUrl(category)"
+                         :alt="category.name"
+                         class="sw-cms-el-subcategories__list-image-element">
+
+                    <div v-else class="sw-cms-el-subcategories__list-image-placeholder">
+                        <sw-icon name="regular-image" size="24"></sw-icon>
+                    </div>
+                </div>
+
+                <div class="sw-cms-el-subcategories__list-content">
+                    <div class="sw-cms-el-subcategories__list-name" v-if="showCategoryName">
+                        {{ category.name }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sw-cms-el-subcategories__empty"
+         v-else-if="parentCategoryId && !isLoading">
+        <p>{{ $tc('sw-cms.elements.subcategories.preview.noSubcategories') }}</p>
+    </div>
+</div>

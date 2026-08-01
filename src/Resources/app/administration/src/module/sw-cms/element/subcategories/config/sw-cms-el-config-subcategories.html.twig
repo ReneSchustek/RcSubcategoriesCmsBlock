@@ -1,0 +1,66 @@
+<div class="sw-cms-el-config-subcategories">
+    <div class="sw-cms-el-config-subcategories__config-section">
+        <div class="sw-cms-el-config-subcategories__config-title">
+            {{ $tc('sw-cms.elements.subcategories.config.title') }}
+        </div>
+
+        <!-- Parent Category Selection -->
+        <sw-entity-single-select
+            class="sw-cms-el-config-subcategories__parent-category"
+            :label="$tc('sw-cms.elements.subcategories.config.parentCategory.label')"
+            :helpText="$tc('sw-cms.elements.subcategories.config.parentCategory.helpText')"
+            entity="category"
+            :criteria="categoryCriteria"
+            v-model="parentCategory"
+            :isLoading="isLoadingCategories"
+            :placeholder="$tc('sw-cms.elements.subcategories.config.parentCategory.placeholder')">
+
+            <template #result-item="{ item, index }">
+                <sw-select-result-list>
+                    <sw-select-result
+                        :item="item"
+                        :index="index">
+                        <span v-for="i in item.level" :key="`level-${i}`" class="sw-category-tree__level-indicator">-</span>
+                        {{ item.name }}
+                    </sw-select-result>
+                </sw-select-result-list>
+            </template>
+        </sw-entity-single-select>
+
+        <!-- Display Mode -->
+        <sw-single-select
+            class="sw-cms-el-config-subcategories__display-mode"
+            :label="$tc('sw-cms.elements.subcategories.config.displayMode.label')"
+            :options="displayModeOptions"
+            v-model="displayMode">
+        </sw-single-select>
+
+        <!-- Columns per Row (only for grid mode) -->
+        <sw-single-select
+            v-if="displayMode === 'grid'"
+            class="sw-cms-el-config-subcategories__columns"
+            :label="$tc('sw-cms.elements.subcategories.config.columnsPerRow.label')"
+            :options="columnsOptions"
+            v-model="columnsPerRow">
+        </sw-single-select>
+
+        <!-- Display Options -->
+        <div class="sw-cms-el-config-subcategories__display-options">
+            <div class="sw-cms-el-config-subcategories__display-options-title">
+                {{ $tc('sw-cms.elements.subcategories.config.displayOptions') }}
+            </div>
+
+            <sw-field
+                type="switch"
+                :label="$tc('sw-cms.elements.subcategories.config.showCategoryImage.label')"
+                v-model="showCategoryImage">
+            </sw-field>
+
+            <sw-field
+                type="switch"
+                :label="$tc('sw-cms.elements.subcategories.config.showCategoryName.label')"
+                v-model="showCategoryName">
+            </sw-field>
+        </div>
+    </div>
+</div>

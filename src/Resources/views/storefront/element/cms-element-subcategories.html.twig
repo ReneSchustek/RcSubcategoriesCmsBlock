@@ -1,0 +1,122 @@
+{% block element_subcategories %}
+    <div class="cms-element-subcategories">
+        {% set elementData = element.data %}
+
+        {% if elementData and elementData.subcategories|length > 0 %}
+            {% set config = element.config %}
+            {% set displayMode = config.displayMode.value|default('grid') %}
+            {% set columnsPerRow = config.columnsPerRow.value|default(4) %}
+            {# `?? true` statt `|default(true)`: der default-Filter greift bei JEDEM leeren Wert — auch bei
+               `false` -> ein ausgeschalteter Schalter wuerde faelschlich wieder auf true fallen. Null-Coalescing
+               faellt nur bei null/undefined zurueck und erhaelt ein bewusstes `false`. #}
+            {% set showCategoryImage = config.showCategoryImage.value ?? true %}
+            {% set showCategoryName = config.showCategoryName.value ?? true %}
+
+            <div class="subcategories-container subcategories-container--{{ displayMode }}">
+                {% if displayMode == 'grid' %}
+                    <div class="subcategories-grid"
+                         style="--columns: {{ columnsPerRow }};">
+                        {% for category in elementData.subcategories %}
+                            {% block subcategories_grid_item %}
+                                <div class="subcategory-item subcategory-item--grid">
+                                    <a href="{{ seoUrl('frontend.navigation.page', { 'navigationId': category.id }) }}"
+                                       class="subcategory-link">
+
+                                        {% if showCategoryImage %}
+                                            {% block subcategories_grid_item_image %}
+                                                <div class="subcategory-image">
+                                                    {% if category.media %}
+                                                        <img src="{{ category.media|sw_encode_media_url }}"
+                                                             alt="{{ showCategoryName ? '' : category.name }}"
+                                                             class="subcategory-image-element"
+                                                             loading="lazy">
+                                                    {% else %}
+                                                        <div class="subcategory-image-placeholder">
+                                                            {% sw_icon 'folder' %}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endblock %}
+                                        {% endif %}
+
+                                        {% if showCategoryName %}
+                                            {% block subcategories_grid_item_name %}
+                                                <div class="subcategory-name">
+                                                    {{ category.name }}
+                                                </div>
+                                            {% endblock %}
+                                        {% endif %}
+
+                                        {% if not showCategoryImage and not showCategoryName %}
+                                            {% block subcategories_grid_item_sr_name %}
+                                                {# Bild UND Name aus: der Link braucht trotzdem einen
+                                                   zugaenglichen Namen (WCAG 2.4.4 / BFSG). #}
+                                                <span class="visually-hidden">{{ category.name }}</span>
+                                            {% endblock %}
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            {% endblock %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="subcategories-list">
+                        {% for category in elementData.subcategories %}
+                            {% block subcategories_list_item %}
+                                <div class="subcategory-item subcategory-item--list">
+                                    <a href="{{ seoUrl('frontend.navigation.page', { 'navigationId': category.id }) }}"
+                                       class="subcategory-link subcategory-link--list">
+
+                                        {% if showCategoryImage %}
+                                            {% block subcategories_list_item_image %}
+                                                <div class="subcategory-image subcategory-image--list">
+                                                    {% if category.media %}
+                                                        <img src="{{ category.media|sw_encode_media_url }}"
+                                                             alt="{{ showCategoryName ? '' : category.name }}"
+                                                             class="subcategory-image-element"
+                                                             loading="lazy">
+                                                    {% else %}
+                                                        <div class="subcategory-image-placeholder">
+                                                            {% sw_icon 'folder' %}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endblock %}
+                                        {% endif %}
+
+                                        {% if showCategoryName %}
+                                            {% block subcategories_list_item_content %}
+                                                <div class="subcategory-content">
+                                                    <div class="subcategory-name">
+                                                        {{ category.name }}
+                                                    </div>
+                                                </div>
+                                            {% endblock %}
+                                        {% endif %}
+
+                                        {% if not showCategoryImage and not showCategoryName %}
+                                            {% block subcategories_list_item_sr_name %}
+                                                {# Bild UND Name aus: der Link braucht trotzdem einen
+                                                   zugaenglichen Namen (WCAG 2.4.4 / BFSG). #}
+                                                <span class="visually-hidden">{{ category.name }}</span>
+                                            {% endblock %}
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            {% endblock %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% else %}
+            {% block subcategories_empty %}
+                <div class="subcategories-empty">
+                    <p>{{ "cms.subcategories.noSubcategories"|trans }}</p>
+                </div>
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{# Styles liegen in src/Resources/app/storefront/src/scss/base.scss (Theme-Build),
+   bewusst nicht als Inline-CSS im Template (das wuerde den HTTP-Cache blocken). #}

@@ -1,0 +1,19 @@
+<div class="sw-cms-el-preview-subcategories">
+    <div class="sw-cms-el-preview-subcategories__header">
+        <sw-icon name="regular-folder-tree" size="20"></sw-icon>
+        <span>{{ $tc('sw-cms.elements.subcategories.preview.label') }}</span>
+    </div>
+
+    <div class="sw-cms-el-preview-subcategories__content">
+        <div class="sw-cms-el-preview-subcategories__grid">
+            <div class="sw-cms-el-preview-subcategories__item" v-for="i in 4" :key="i">
+                <div class="sw-cms-el-preview-subcategories__image">
+                    <sw-icon name="regular-image" size="24"></sw-icon>
+                </div>
+                <div class="sw-cms-el-preview-subcategories__name">
+                    {{ $tc('sw-cms.elements.subcategories.preview.categoryName', i, { number: i }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
