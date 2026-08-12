@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.4] - 2026-08-10 — Backoffice-Übersetzungen werden wieder angemeldet
+
+### Geändert
+
+- **Die Übersetzungen im Backoffice werden wieder angemeldet.** Der bisherige Weg existiert in Shopware 6.7 nicht mehr; der Aufruf brach beim Laden der Administration ab, und alles danach wurde nicht mehr ausgeführt.
+
 ## [1.1.3] - 2026-07-20 — Anzeige-Schalter wirken im Storefront
 
 > **Deployment:** `php bin/console cache:clear`.
