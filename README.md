@@ -1,14 +1,14 @@
-﻿# RcSubcategoriesCmsBlock
+# RcSubcategoriesCmsBlock
 
-Shopware 6 Plugin — CMS-Block-Element zur Anzeige von Unterkategorien.
+Ein Shopware-6-Plugin mit einem CMS-Element, das Unterkategorien anzeigt.
 
 ---
 
 ## Was das Plugin macht
 
-Shopware bietet im Erlebniswelt-Editor keinen Standard-Block, der die Unterkategorien einer bestimmten Kategorie automatisch auflistet. Kategoriennavigationen müssen dadurch manuell gepflegt werden, was bei wachsenden Sortimenten aufwändig wird.
+Im Erlebniswelt-Editor fehlt in Shopware ein Standard-Block, der die Unterkategorien einer bestimmten Kategorie von selbst auflistet. Kategoriennavigationen müssen deshalb von Hand gepflegt werden, und mit jedem wachsenden Sortiment wird das mühsamer.
 
-Dieses Plugin registriert ein neues CMS-Element `rc_subcategories`. Im Block-Editor kann eine Elternkategorie ausgewählt werden. Das Plugin lädt alle aktiven, sichtbaren (nicht-Link-)Unterkategorien dieser Kategorie inklusive ihrer Bilder und stellt sie dem Template als `SubcategoriesStruct` zur Verfügung. Die Sortierung erfolgt nach Position, dann alphabetisch.
+Das Plugin registriert dafür ein neues CMS-Element `rc_subcategories`. Im Block-Editor wird eine Elternkategorie ausgewählt. Das Plugin lädt alle aktiven, sichtbaren Unterkategorien dieser Kategorie, die keine Links sind, samt ihren Bildern und reicht sie als `SubcategoriesStruct` ans Template weiter. Sortiert wird nach Position, danach alphabetisch.
 
 ---
 
@@ -34,7 +34,7 @@ php bin/console cache:clear
 1. Im Erlebniswelt-Editor eine Seite öffnen
 2. Neuen Block hinzufügen → Element **Subcategories (Ruhrcoder)** wählen
 3. Im Element-Konfigurator die gewünschte Elternkategorie auswählen
-4. Speichern — die Unterkategorien werden automatisch geladen und dargestellt
+4. Speichern, danach werden die Unterkategorien automatisch geladen und dargestellt
 
 Das Template befindet sich unter:
 
@@ -64,5 +64,3 @@ composer quality   # cs-check + phpstan + test
 ---
 
 Entwickelt von [Ruhrcoder](https://ruhrcoder.de)
-
-<!-- TRIAGE-WORKFLOW: auto-managed by triage-deploy.ps1 -->
