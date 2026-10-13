@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/rcsubcategoriescmsblock/administration/",
+  "entryPoints": {
+    "rc-subcategories-cms-block": {
+      "css": [
+        "/bundles/rcsubcategoriescmsblock/administration/assets/rc-subcategories-cms-block-CXdc-JZ-.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/rcsubcategoriescmsblock/administration/assets/rc-subcategories-cms-block-Biwd-c2O.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

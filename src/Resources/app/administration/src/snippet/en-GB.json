@@ -25,12 +25,20 @@
           "showCategoryName": {
             "label": "Show Category Name"
           },
-          "noParentCategory": "Please select a parent category."
+          "noParentCategory": "Please select a parent category.",
+          "colors": {
+            "title": "Colours",
+            "text": "Text colour",
+            "border": "Card border colour",
+            "background": "Card background",
+            "helpText": "Leave empty to use the theme colour."
+          }
         },
         "preview": {
           "label": "Subcategories",
           "categoryName": "Category {number}",
-          "noSubcategories": "No subcategories found"
+          "noSubcategories": "No subcategories found",
+          "loadingError": "The subcategories could not be loaded. Please reload the editor."
         }
       }
     }

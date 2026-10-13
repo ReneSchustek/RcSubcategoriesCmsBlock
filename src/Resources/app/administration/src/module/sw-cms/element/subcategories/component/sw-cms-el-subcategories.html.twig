@@ -8,6 +8,11 @@
         <sw-loader></sw-loader>
     </div>
 
+    <div class="sw-cms-el-subcategories__error"
+         v-else-if="hasLoadingError">
+        <p>{{ $tc('sw-cms.elements.subcategories.preview.loadingError') }}</p>
+    </div>
+
     <div class="sw-cms-el-subcategories__content"
          v-else-if="subcategories.length > 0"
          :class="`sw-cms-el-subcategories__content--${displayMode}`">
@@ -23,7 +28,7 @@
                 <div class="sw-cms-el-subcategories__image" v-if="showCategoryImage">
                     <img v-if="getCategoryImageUrl(category)"
                          :src="getCategoryImageUrl(category)"
-                         :alt="category.name"
+                         :alt="getCategoryName(category)"
                          class="sw-cms-el-subcategories__image-element">
 
                     <div v-else class="sw-cms-el-subcategories__image-placeholder">
@@ -32,7 +37,7 @@
                 </div>
 
                 <div class="sw-cms-el-subcategories__name" v-if="showCategoryName">
-                    {{ category.name }}
+                    {{ getCategoryName(category) }}
                 </div>
             </div>
         </div>
@@ -45,7 +50,7 @@
                 <div class="sw-cms-el-subcategories__list-image" v-if="showCategoryImage">
                     <img v-if="getCategoryImageUrl(category)"
                          :src="getCategoryImageUrl(category)"
-                         :alt="category.name"
+                         :alt="getCategoryName(category)"
                          class="sw-cms-el-subcategories__list-image-element">
 
                     <div v-else class="sw-cms-el-subcategories__list-image-placeholder">
@@ -55,7 +60,7 @@
 
                 <div class="sw-cms-el-subcategories__list-content">
                     <div class="sw-cms-el-subcategories__list-name" v-if="showCategoryName">
-                        {{ category.name }}
+                        {{ getCategoryName(category) }}
                     </div>
                 </div>
             </div>

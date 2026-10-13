@@ -74,6 +74,39 @@ Component.register('sw-cms-el-config-subcategories', {
             }
         },
 
+        textColor: {
+            get() {
+                return this.element.config.textColor?.value ?? '';
+            },
+
+            set(textColor) {
+                this.element.config.textColor.value = textColor ?? '';
+                this.$emit('element-update', this.element);
+            }
+        },
+
+        borderColor: {
+            get() {
+                return this.element.config.borderColor?.value ?? '';
+            },
+
+            set(borderColor) {
+                this.element.config.borderColor.value = borderColor ?? '';
+                this.$emit('element-update', this.element);
+            }
+        },
+
+        backgroundColor: {
+            get() {
+                return this.element.config.backgroundColor?.value ?? '';
+            },
+
+            set(backgroundColor) {
+                this.element.config.backgroundColor.value = backgroundColor ?? '';
+                this.$emit('element-update', this.element);
+            }
+        },
+
         categoryRepository() {
             return this.repositoryFactory.create('category');
         },

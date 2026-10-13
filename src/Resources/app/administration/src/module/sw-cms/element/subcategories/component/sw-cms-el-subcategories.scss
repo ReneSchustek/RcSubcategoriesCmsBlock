@@ -155,4 +155,17 @@
     color: #6c757d;
     font-size: 14px;
   }
+
+  // Der Ausfall wird bewusst anders eingefärbt als der leere Zustand: Beide Texte stehen an
+  // derselben Stelle, und nur die Farbe zeigt auf den ersten Blick, dass etwas schiefging.
+  &__error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    padding: 0 16px;
+    color: #de294c;
+    font-size: 14px;
+    text-align: center;
+  }
 }

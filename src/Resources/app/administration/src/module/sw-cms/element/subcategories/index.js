@@ -32,6 +32,19 @@ Application.getContainer('service').cmsService.registerCmsElement({
         showCategoryName: {
             source: 'static',
             value: true
+        },
+        // Leer heißt: die Farbe des Themes gilt.
+        textColor: {
+            source: 'static',
+            value: ''
+        },
+        borderColor: {
+            source: 'static',
+            value: ''
+        },
+        backgroundColor: {
+            source: 'static',
+            value: ''
         }
     }
     // Bewusst kein collect(): die alte Variante lud bei jedem CMS-Seitenaufbau ALLE aktiven/sichtbaren

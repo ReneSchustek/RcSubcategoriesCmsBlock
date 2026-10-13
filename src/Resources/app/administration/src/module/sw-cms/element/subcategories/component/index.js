@@ -6,6 +6,10 @@ const { Component, Mixin } = Shopware;
 Component.register('sw-cms-el-subcategories', {
     template,
 
+    // Das Mixin `cms-element` stellt nur `cmsService` bereit — die Datenquelle muss die
+    // Komponente selbst anfordern.
+    inject: ['repositoryFactory'],
+
     mixins: [
         Mixin.getByName('cms-element')
     ],
@@ -13,7 +17,8 @@ Component.register('sw-cms-el-subcategories', {
     data() {
         return {
             subcategories: [],
-            isLoading: false
+            isLoading: false,
+            hasLoadingError: false
         };
     },
 
@@ -50,6 +55,7 @@ Component.register('sw-cms-el-subcategories', {
                     this.loadSubcategories();
                 } else {
                     this.subcategories = [];
+                    this.hasLoadingError = false;
                 }
             },
             immediate: true
@@ -63,6 +69,7 @@ Component.register('sw-cms-el-subcategories', {
             }
 
             this.isLoading = true;
+            this.hasLoadingError = false;
 
             try {
                 const context = Object.assign(
@@ -84,11 +91,27 @@ Component.register('sw-cms-el-subcategories', {
 
                 this.subcategories = result;
             } catch (error) {
-                Shopware.Utils.debug.error('RcSubcategoriesCmsBlock: Error loading subcategories:', error);
+                // Ein technischer Ausfall darf nicht aussehen wie eine Kategorie ohne
+                // Unterkategorien — sonst sucht der Redakteur den Fehler bei seinen Daten.
+                this.hasLoadingError = true;
                 this.subcategories = [];
+
+                Shopware.Utils.debug.error(
+                    `RcSubcategoriesCmsBlock: Unterkategorien zu ${this.parentCategoryId} nicht ladbar`,
+                    error
+                );
             } finally {
                 this.isLoading = false;
             }
+        },
+
+        /**
+         * Der Name kommt aus der Übersetzung, nicht aus dem Rohfeld: Ohne eigene Zeile in der
+         * geladenen Sprache bleibt `name` leer, während `translated.name` auf die Systemsprache
+         * zurückfällt. Der Rückfall auf `name` deckt Objekte ohne geladene Übersetzung ab.
+         */
+        getCategoryName(category) {
+            return category.translated?.name ?? category.name;
         },
 
         getCategoryImageUrl(category) {

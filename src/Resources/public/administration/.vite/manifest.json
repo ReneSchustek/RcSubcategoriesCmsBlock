@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/rc-subcategories-cms-block-Biwd-c2O.js",
+    "name": "rc-subcategories-cms-block",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/rc-subcategories-cms-block-CXdc-JZ-.css"
+    ]
+  }
+}

@@ -11,7 +11,7 @@
             :helpText="$tc('sw-cms.elements.subcategories.config.parentCategory.helpText')"
             entity="category"
             :criteria="categoryCriteria"
-            v-model="parentCategory"
+            v-model:value="parentCategory"
             :isLoading="isLoadingCategories"
             :placeholder="$tc('sw-cms.elements.subcategories.config.parentCategory.placeholder')">
 
@@ -32,7 +32,7 @@
             class="sw-cms-el-config-subcategories__display-mode"
             :label="$tc('sw-cms.elements.subcategories.config.displayMode.label')"
             :options="displayModeOptions"
-            v-model="displayMode">
+            v-model:value="displayMode">
         </sw-single-select>
 
         <!-- Columns per Row (only for grid mode) -->
@@ -41,7 +41,7 @@
             class="sw-cms-el-config-subcategories__columns"
             :label="$tc('sw-cms.elements.subcategories.config.columnsPerRow.label')"
             :options="columnsOptions"
-            v-model="columnsPerRow">
+            v-model:value="columnsPerRow">
         </sw-single-select>
 
         <!-- Display Options -->
@@ -50,17 +50,42 @@
                 {{ $tc('sw-cms.elements.subcategories.config.displayOptions') }}
             </div>
 
-            <sw-field
-                type="switch"
+            <sw-switch-field
                 :label="$tc('sw-cms.elements.subcategories.config.showCategoryImage.label')"
-                v-model="showCategoryImage">
-            </sw-field>
+                v-model:value="showCategoryImage">
+            </sw-switch-field>
 
-            <sw-field
-                type="switch"
+            <sw-switch-field
                 :label="$tc('sw-cms.elements.subcategories.config.showCategoryName.label')"
-                v-model="showCategoryName">
-            </sw-field>
+                v-model:value="showCategoryName">
+            </sw-switch-field>
+        </div>
+
+        <!-- Farben: leer heißt Theme-Farbe -->
+        <div class="sw-cms-el-config-subcategories__colors">
+            <div class="sw-cms-el-config-subcategories__display-options-title">
+                {{ $tc('sw-cms.elements.subcategories.config.colors.title') }}
+            </div>
+
+            <sw-colorpicker
+                :label="$tc('sw-cms.elements.subcategories.config.colors.text')"
+                :helpText="$tc('sw-cms.elements.subcategories.config.colors.helpText')"
+                v-model:value="textColor">
+            </sw-colorpicker>
+
+            <sw-colorpicker
+                v-if="displayMode === 'list'"
+                :label="$tc('sw-cms.elements.subcategories.config.colors.border')"
+                :helpText="$tc('sw-cms.elements.subcategories.config.colors.helpText')"
+                v-model:value="borderColor">
+            </sw-colorpicker>
+
+            <sw-colorpicker
+                v-if="displayMode === 'list'"
+                :label="$tc('sw-cms.elements.subcategories.config.colors.background')"
+                :helpText="$tc('sw-cms.elements.subcategories.config.colors.helpText')"
+                v-model:value="backgroundColor">
+            </sw-colorpicker>
         </div>
     </div>
 </div>

@@ -1,5 +1,89 @@
 # Changelog
 
+## [1.2.0] - 2026-10-13 — Farben und Ecken vom Theme, Farben je Baustein
+
+> **Deployment:** `plugin:update RcSubcategoriesCmsBlock`, `theme:compile`, `cache:clear`.
+
+### Geändert
+
+- **Keine eigene Palette mehr.** Radius, Rahmen, Text und Flächen kommen aus dem Theme. Vorher brachte der
+  Stilbogen eigene Grautöne und 8 Pixel Radius mit und fiel damit in Design 2027 heraus. Im bisherigen Theme
+  ändert sich wenig: Der Radius bleibt bei 8 Pixeln, die Grautöne werden die des Themes.
+
+### Hinzugefügt
+
+- **Farben im Baustein:** Textfarbe, in der Listenansicht auch Rahmen und Hintergrund der Karten. Leer heißt
+  Theme-Farbe; die Angabe gilt nur für diesen Baustein.
+
+## [1.1.8] - 2026-08-19 — Die Einstellung des Bausteins zeigt endlich ihre Werte
+
+### Behoben
+
+- **Die beiden Schalter „Kategoriebild anzeigen" und „Kategoriename anzeigen" waren unsichtbar.**
+  Sie standen als `sw-field` in der Vorlage — eine Komponente, die es seit Shopware 6.7 nicht mehr
+  gibt. Unbekannte Komponenten bleiben still leer. Damit ließ sich weder das Bild noch der Name
+  abschalten; beide sind in der Vorgabe an und blieben es.
+- **Hauptkategorie, Anzeigemodus und Spalten pro Reihe standen leer da**, obwohl Werte hinterlegt
+  waren. Die Vorlage band mit `v-model`, die Felder führen ihren Wert aber über `value`. Das Feld
+  bekam nichts zu sehen und meldete nichts.
+- Ein Vertragstest hält beides fest — entferntes Bauteil in einer Vorlage und ein Feld, das mit
+  `v-model` statt `v-model:value` gebunden ist.
+
+Die Storefront war nie betroffen: Sie liest die gespeicherte Einstellung direkt.
+
+## [1.1.7] - 2026-08-18 — Die Vorschau im Editor zeigt endlich die Kacheln
+
+### Behoben
+
+- **Die Vorschau des Bausteins blieb im Erlebniswelten-Editor immer leer.** Dort stand dauerhaft
+  „Keine Unterkategorien gefunden", auch wenn die eingestellte Hauptkategorie sehr wohl
+  Unterkategorien hatte und die Storefront sie als Kacheln zeigte. Die anzeigende Komponente
+  benutzte den Dienst für den Datenzugriff, ohne ihn anzufordern; der Zugriff lief damit ins
+  Leere, bevor überhaupt eine Abfrage entstand. Nachgemessen: kein einziger Aufruf der
+  Kategorie-Suche. Jetzt wird der Dienst angefordert, und die Vorschau zeigt, was der Baustein
+  später auch in der Storefront zeigt.
+
+- **Ein Ausfall sah aus wie eine leere Kategorie.** Beide Fälle führten zu demselben Satz, und
+  ein Fehler wurde nur still weggeschrieben. Wer den Baustein einrichtete, suchte den Fehler
+  deshalb bei seinen Daten. Ein Ladefehler hat jetzt einen eigenen, deutlich abgesetzten Hinweis.
+
+- **Auch im Editor stand unter den Kacheln kein Name**, wenn die Kategorie in der geladenen
+  Sprache keine eigene Übersetzung hat. Dieselbe Berichtigung wie in der Storefront (1.1.6),
+  jetzt auch in der Vorschau und in den Alternativtexten der Bilder.
+
+### Intern
+
+- Ein Vertragstest hält fest, dass jede Komponente des Verwaltungsteils den Datenzugriff auch
+  anfordert, und dass Ladefehler und leeres Ergebnis getrennt bleiben. Vor der Berichtigung
+  schlug er fehl.
+
+## [1.1.6] - 2026-08-17 — Der Baustein lässt sich wieder einsetzen, die Kacheln tragen wieder Namen
+
+### Behoben
+
+- **Unter den Kacheln stand kein Name.** Der Name einer Kategorie ist ein übersetztes Feld; gelesen
+  wurde das Rohfeld. In einer Sprache, in der die Kategorie keine eigene Übersetzung hat, blieb es
+  leer — die Kacheln zeigten nur ihr Bild. Betroffen war damit auch der Alternativtext des Bildes
+  und, mit Bild und Name abgeschaltet, der Name für die Sprachausgabe: Der Verweis hatte dann gar
+  keinen (WCAG 2.4.4). Jetzt wird die Übersetzung gelesen, mit Rückfall über die Sprachkette.
+
+- **Der Baustein war im Erlebniswelten-Editor nicht benutzbar.** An seiner Stelle stand „Element
+  could not be load"; einsetzen ließ er sich gar nicht erst. Ursache waren die fehlenden gebauten
+  Dateien des Backoffice-Teils: Ohne sie kündigt Shopware das Bündel nicht an und lädt es nie —
+  ohne Ausnahme, ohne fehlgeschlagene Anfrage, ohne Eintrag in der Konsole. In der Storefront
+  erschien der Baustein die ganze Zeit normal, weshalb der Ausfall von außen nicht zu sehen war.
+  Wer den Verwaltungsbereich nach der Installation neu baut, hat ihn nie bemerkt.
+
+## [1.1.5] - 2026-08-12 — Die Auswahl der Kacheln ist jetzt festgenagelt
+
+### Neu
+
+- **Prüfungen für die Bedingungen, nach denen Unterkategorien geholt werden.** Bisher war nur
+  geprüft, dass überhaupt gesucht wird. Fiele eine der Bedingungen weg, zeigte die Kachelreihe
+  Kategorien, die niemand sehen soll — abgeschaltete, unsichtbare oder solche ohne eigene Seite —,
+  und von außen sähe es nach „so viele Unterkategorien gibt es eben" aus. Geprüft sind jetzt auch
+  das Mitladen der Bilder, die Sortierung nach Namen und die Obergrenze.
+
 ## [1.1.4] - 2026-08-10 — Backoffice-Übersetzungen werden wieder angemeldet
 
 ### Geändert

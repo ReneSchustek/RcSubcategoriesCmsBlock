@@ -25,12 +25,20 @@
           "showCategoryName": {
             "label": "Kategorie-Name anzeigen"
           },
-          "noParentCategory": "Bitte wählen Sie eine Hauptkategorie aus."
+          "noParentCategory": "Bitte wählen Sie eine Hauptkategorie aus.",
+          "colors": {
+            "title": "Farben",
+            "text": "Textfarbe",
+            "border": "Rahmenfarbe der Karten",
+            "background": "Hintergrund der Karten",
+            "helpText": "Leer lassen, dann gilt die Farbe des Themes."
+          }
         },
         "preview": {
           "label": "Unterkategorien",
           "categoryName": "Kategorie {number}",
-          "noSubcategories": "Keine Unterkategorien gefunden"
+          "noSubcategories": "Keine Unterkategorien gefunden",
+          "loadingError": "Die Unterkategorien konnten nicht geladen werden. Bitte laden Sie den Editor neu."
         }
       }
     }

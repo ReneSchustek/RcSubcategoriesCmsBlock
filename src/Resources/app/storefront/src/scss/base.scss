@@ -6,7 +6,16 @@
  * Inline-Attribut am Grid-Container (legitim für Pro-Element-Werte).
  */
 
+// Farben und Radius kommen vom Theme (Bootstrap-Variablen), damit der Baustein zu jedem Theme passt.
+// Die drei Farben lassen sich je Element überschreiben; die Vorlage setzt dann `--rc-sub-text`,
+// `--rc-sub-border` bzw. `--rc-sub-bg` am Element. Ohne Eintrag gilt die Theme-Farbe.
 .cms-element-subcategories {
+    --rc-sub-radius: var(--bs-border-radius, 0.5rem);
+    --rc-sub-line: var(--rc-sub-border, color-mix(in srgb, var(--bs-body-color) 18%, transparent));
+    --rc-sub-line-hover: var(--rc-sub-border, color-mix(in srgb, var(--bs-body-color) 40%, transparent));
+    --rc-sub-name: var(--rc-sub-text, var(--bs-heading-color, var(--bs-body-color)));
+    --rc-sub-muted: var(--rc-sub-text, var(--bs-secondary-color));
+
     width: 100%;
 }
 
@@ -43,13 +52,14 @@
     }
 
     &--list {
-        border: 1px solid #e2e8f0;
-        border-radius: 0.5rem;
+        border: 1px solid var(--rc-sub-line);
+        border-radius: var(--rc-sub-radius);
+        background-color: var(--rc-sub-bg, transparent);
         overflow: hidden;
         transition: all 0.2s ease;
 
         &:hover {
-            border-color: #cbd5e0;
+            border-color: var(--rc-sub-line-hover);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
     }
@@ -75,7 +85,7 @@
 
 .subcategory-image {
     margin-bottom: 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: var(--rc-sub-radius);
     overflow: hidden;
 
     &--list {
@@ -104,8 +114,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f7fafc;
-    color: #a0aec0;
+    background-color: var(--bs-secondary-bg);
+    color: var(--bs-secondary-color);
     min-height: 8rem;
 
     .subcategory-image--list & {
@@ -115,7 +125,7 @@
 
 .subcategory-name {
     font-weight: 500;
-    color: #2d3748;
+    color: var(--rc-sub-name);
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
@@ -127,7 +137,7 @@
 .subcategories-empty {
     text-align: center;
     padding: 3rem 1rem;
-    color: #718096;
+    color: var(--rc-sub-muted);
 
     p {
         margin: 0;

@@ -1,5 +1,15 @@
 {% block element_subcategories %}
-    <div class="cms-element-subcategories">
+    {# Farben aus dem Element. Nur Hex- und rgb()-Werte werden übernommen; was anderes im Feld steht,
+       fällt weg und die Theme-Farbe gilt. Das hält Fremdes aus dem style-Attribut heraus. #}
+    {% set colorPattern = '/^(#[0-9a-fA-F]{3,8}|rgba?\\([0-9.,%\\s]+\\))$/' %}
+    {% set colorStyle = '' %}
+    {% for configKey, cssVar in { textColor: '--rc-sub-text', borderColor: '--rc-sub-border', backgroundColor: '--rc-sub-bg' } %}
+        {% set colorValue = element.config[configKey].value ?? '' %}
+        {% if colorValue is not empty and colorValue matches colorPattern %}
+            {% set colorStyle = colorStyle ~ cssVar ~ ': ' ~ colorValue ~ '; ' %}
+        {% endif %}
+    {% endfor %}
+    <div class="cms-element-subcategories"{% if colorStyle %} style="{{ colorStyle|trim }}"{% endif %}>
         {% set elementData = element.data %}
 
         {% if elementData and elementData.subcategories|length > 0 %}
@@ -27,7 +37,7 @@
                                                 <div class="subcategory-image">
                                                     {% if category.media %}
                                                         <img src="{{ category.media|sw_encode_media_url }}"
-                                                             alt="{{ showCategoryName ? '' : category.name }}"
+                                                             alt="{{ showCategoryName ? '' : category.translated.name }}"
                                                              class="subcategory-image-element"
                                                              loading="lazy">
                                                     {% else %}
@@ -42,7 +52,7 @@
                                         {% if showCategoryName %}
                                             {% block subcategories_grid_item_name %}
                                                 <div class="subcategory-name">
-                                                    {{ category.name }}
+                                                    {{ category.translated.name }}
                                                 </div>
                                             {% endblock %}
                                         {% endif %}
@@ -51,7 +61,7 @@
                                             {% block subcategories_grid_item_sr_name %}
                                                 {# Bild UND Name aus: der Link braucht trotzdem einen
                                                    zugänglichen Namen (WCAG 2.4.4 / BFSG). #}
-                                                <span class="visually-hidden">{{ category.name }}</span>
+                                                <span class="visually-hidden">{{ category.translated.name }}</span>
                                             {% endblock %}
                                         {% endif %}
                                     </a>
@@ -72,7 +82,7 @@
                                                 <div class="subcategory-image subcategory-image--list">
                                                     {% if category.media %}
                                                         <img src="{{ category.media|sw_encode_media_url }}"
-                                                             alt="{{ showCategoryName ? '' : category.name }}"
+                                                             alt="{{ showCategoryName ? '' : category.translated.name }}"
                                                              class="subcategory-image-element"
                                                              loading="lazy">
                                                     {% else %}
@@ -88,7 +98,7 @@
                                             {% block subcategories_list_item_content %}
                                                 <div class="subcategory-content">
                                                     <div class="subcategory-name">
-                                                        {{ category.name }}
+                                                        {{ category.translated.name }}
                                                     </div>
                                                 </div>
                                             {% endblock %}
@@ -98,7 +108,7 @@
                                             {% block subcategories_list_item_sr_name %}
                                                 {# Bild UND Name aus: der Link braucht trotzdem einen
                                                    zugänglichen Namen (WCAG 2.4.4 / BFSG). #}
-                                                <span class="visually-hidden">{{ category.name }}</span>
+                                                <span class="visually-hidden">{{ category.translated.name }}</span>
                                             {% endblock %}
                                         {% endif %}
                                     </a>
