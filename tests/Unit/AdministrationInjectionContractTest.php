@@ -13,10 +13,10 @@ use PHPUnit\Framework\TestCase;
  * `cms-element` gibt ausschließlich `cmsService` weiter — wer `this.repositoryFactory` benutzt,
  * ohne sie zu erklären, greift auf `undefined` zu.
  *
- * Genau das war am 2026-08-18 die Ursache dafür, dass die Vorschau des Bausteins im
- * Erlebniswelten-Editor dauerhaft „Keine Unterkategorien gefunden" meldete: Der Zugriff warf,
- * bevor überhaupt eine Abfrage entstand — kein einziger Aufruf von `/api/search/category`, keine
- * Meldung in der Konsole. Der Fehler ist von außen nicht von einer leeren Kategorie zu
+ * Dann meldet die Vorschau des Bausteins im Erlebniswelten-Editor dauerhaft „Keine
+ * Unterkategorien gefunden": Der Zugriff wirft, bevor überhaupt eine Abfrage entsteht, ohne einen
+ * einzigen Aufruf von `/api/search/category` und ohne Meldung in der Konsole. Der Fehler ist von
+ * außen nicht von einer leeren Kategorie zu
  * unterscheiden, deshalb hält ihn ein Test fest und nicht das Auge.
  */
 final class AdministrationInjectionContractTest extends TestCase
@@ -108,8 +108,8 @@ final class AdministrationInjectionContractTest extends TestCase
     }
 
     /**
-     * Der Name kommt aus der Übersetzung. Derselbe Rückfall, den das Storefront-Template seit
-     * dem 2026-08-17 beachtet, gilt im Editor genauso.
+     * Der Name kommt aus der Übersetzung. Derselbe Rückfall, den das Storefront-Template beachtet,
+     * gilt im Editor genauso.
      */
     public function testTheComponentTemplateNeverReadsTheRawCategoryName(): void
     {

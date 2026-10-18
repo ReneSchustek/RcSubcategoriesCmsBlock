@@ -9,16 +9,16 @@ use PHPUnit\Framework\TestCase;
 /**
  * Vertragstest gegen die Vorlagen des Verwaltungsteils.
  *
- * Am 2026-08-19 öffnete sich die Einstellung des Bausteins, war aber leer, wo Werte stehen
- * mussten. Zwei Ursachen, beide ohne jede Meldung:
+ * Öffnet sich die Einstellung des Bausteins, ist aber leer, wo Werte stehen müssten, gibt es zwei
+ * Ursachen, beide ohne jede Meldung:
  *
  * 1. `sw-field` gibt es seit Shopware 6.7 nicht mehr. Eine unbekannte Komponente bleibt als
- *    unaufgelöste Marke im Baum stehen — die beiden Schalter „Kategoriebild anzeigen" und
- *    „Kategoriename anzeigen" waren schlicht nicht da.
+ *    unaufgelöste Marke im Baum stehen, und die beiden Schalter „Kategoriebild anzeigen" und
+ *    „Kategoriename anzeigen" sind schlicht nicht da.
  * 2. `v-model` schreibt `modelValue`. Die Felder der Verwaltung nehmen ihren Wert aber über die
  *    Eigenschaft `value` entgegen und geben ihn über `update:value` heraus. Das Feld sieht dann
- *    nichts und meldet nichts — Hauptkategorie, Anzeigemodus und Spaltenzahl standen leer da,
- *    obwohl Werte hinterlegt waren. Richtig ist `v-model:value`.
+ *    nichts und meldet nichts: Hauptkategorie, Anzeigemodus und Spaltenzahl stehen leer da,
+ *    obwohl Werte hinterlegt sind. Richtig ist `v-model:value`.
  *
  * Beides ist nur im laufenden Erlebniswelten-Editor zu sehen. Deshalb hält es dieser Test fest.
  */

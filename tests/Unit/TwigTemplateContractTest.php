@@ -11,9 +11,8 @@ use PHPUnit\Framework\TestCase;
  *
  * Der Name einer Kategorie ist ein übersetztes Feld. `category.name` liefert nur dann etwas,
  * wenn die aktive Sprache eine eigene Übersetzungszeile mit Inhalt hat; der Rückfall über die
- * Sprachkette steht in `category.translated.name`. Genau daran blieben am 2026-08-17 im Demoshop
- * alle fünf Kacheln namenlos, während Hauptmenü und Brotkrumenpfad derselben Seite die Namen
- * zeigten.
+ * Sprachkette steht in `category.translated.name`. Wer `category.name` liest, zeigt deshalb
+ * namenlose Kacheln, während Hauptmenü und Brotkrumenpfad derselben Seite die Namen zeigen.
  *
  * Zwei der betroffenen Stellen sind keine Kosmetik: Sind Bild und Name abgeschaltet, ist der
  * `visually-hidden`-Name das Einzige, was dem Verweis einen zugänglichen Namen gibt (WCAG 2.4.4).

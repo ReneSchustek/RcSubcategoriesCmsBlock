@@ -47,8 +47,8 @@ Application.getContainer('service').cmsService.registerCmsElement({
             value: ''
         }
     }
-    // Bewusst kein collect(): die alte Variante lud bei jedem CMS-Seitenaufbau ALLE aktiven/sichtbaren
-    // Kategorien ungefiltert und unbegrenzt, obwohl das Ergebnis nirgends konsumiert wurde. Die
+    // Kein collect(): Es lüde bei jedem CMS-Seitenaufbau ALLE aktiven/sichtbaren Kategorien
+    // ungefiltert und unbegrenzt, obwohl das Ergebnis nirgends konsumiert wird. Die
     // Vorschau-Komponente lädt ihre Unterkategorien selbst (nach parentId gefiltert, siehe
     // component/index.js); die Storefront-Daten liefert der PHP-Resolver via enrich(). Ein globaler
     // Pre-Load ist daher reine Last ohne Nutzen.
