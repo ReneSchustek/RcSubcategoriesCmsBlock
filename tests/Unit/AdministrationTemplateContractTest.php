@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * Öffnet sich die Einstellung des Bausteins, ist aber leer, wo Werte stehen müssten, gibt es zwei
  * Ursachen, beide ohne jede Meldung:
  *
- * 1. `sw-field` gibt es seit Shopware 6.7 nicht mehr. Eine unbekannte Komponente bleibt als
+ * 1. `sw-field` kennt Shopware 6.7 nicht. Eine unbekannte Komponente bleibt als
  *    unaufgelöste Marke im Baum stehen, und die beiden Schalter „Kategoriebild anzeigen" und
  *    „Kategoriename anzeigen" sind schlicht nicht da.
  * 2. `v-model` schreibt `modelValue`. Die Felder der Verwaltung nehmen ihren Wert aber über die
@@ -27,7 +27,7 @@ final class AdministrationTemplateContractTest extends TestCase
     private const ADMINISTRATION_PATH = __DIR__ . '/../../src/Resources/app/administration/src';
 
     /**
-     * Komponenten, die Shopware 6.7 nicht mehr kennt, samt Nachfolger für die Fehlermeldung.
+     * Komponenten, die Shopware 6.7 nicht kennt, samt Nachfolger für die Fehlermeldung.
      */
     private const REMOVED_COMPONENTS = [
         'sw-field' => 'sw-switch-field, sw-text-field, sw-textarea-field (je nach Typ)',

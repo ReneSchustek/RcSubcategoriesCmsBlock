@@ -140,7 +140,7 @@ final class SubcategoriesResolverTest extends TestCase
 
     /**
      * Was: Die Suchbedingungen, mit denen die Unterkategorien geholt werden.
-     * Warum: **Hier entscheidet sich, was auf der Seite landet.** Fiele einer der Filter weg,
+     * Warum: Hier entscheidet sich, was auf der Seite landet. Fiele einer der Filter weg,
      *        zeigte die Kachelreihe Kategorien, die niemand sehen soll — abgeschaltete,
      *        unsichtbare oder solche ohne eigene Seite. Der Fehler wäre still: Es erschienen
      *        einfach mehr Kacheln, und von außen sieht niemand, dass sie dort nicht hingehören.
