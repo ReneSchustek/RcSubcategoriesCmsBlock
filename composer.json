@@ -2,7 +2,7 @@
   "name": "rc/subcategories-cms-block",
   "description": "Shopware 6 Plugin for displaying subcategories in CMS blocks",
   "type": "shopware-platform-plugin",
-  "license": "MIT",
+  "license": "proprietary",
   "version": "1.2.0",
   "authors": [
     {
